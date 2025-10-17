@@ -1,9 +1,14 @@
+import { useState } from "react"
 import DATA from "../../public/DATA.json"
 
 const Messaging = () => {
+
+  const [selectedUser,setSelectedUser]=useState("")
+
+
   return (
     <div className='pt-16 flex justify-center pb-2'>
-        <div className='bg-[#FFFFFF] border border-[silver] min-h-screen rounded-lg min-w-200'>
+        <div className='bg-[#FFFFFF] h-[90vh] border overflow-hidden border-[silver] rounded-lg min-w-200'>
           <div className='p-3'>
             <div className='flex justify-between items-center'>
             <div className='flex gap-3 items-center h-8'>
@@ -27,21 +32,44 @@ const Messaging = () => {
           <hr className='text-[silver]'/>
 
 
-          <div className="grid grid-cols-2">
-            <div className="border-r border-[silver]">
-              {DATA.map((users,index)=>(
-                  <div className="px-2 py-4 flex gap-3 items-center hover:bg-[#F4F2EE] cursor-pointer border-b border-[silver] focus:border-l">
-                    <img src={users.image} className="rounded-full w-15 h-15"/>
-                    <div>
-                      <p>{users.name}</p>
-                      <p className="truncate w-80">{users.des}</p>
-                      
-                    </div>
+          <div className="flex">
+            <div className="h-[calc(90vh-64px)] overflow-y-auto w-[40%] border-r border-[silver] [&::-webkit-scrollbar]:hidden">
+              {DATA.map((user,index)=>(
+                <div key={index} onClick={()=>{setSelectedUser(user)}} className={`relative border-b border-[silver] cursor-pointer  p-3 flex gap-3 items-center  ${selectedUser.id === user.id ? "bg-[#EDF3F8]" : "hover:bg-[#EBEBEB] "}`}>
+                  <div className={`w-[5px] bg-[#01754f] h-full absolute top-0 left-0 ${selectedUser.id === user.id ? "" : "hidden"}`}></div>
+                  <img src={user.image} className="w-15 h-15 rounded-full"/>
+                  <div>
+                    <p className="font-bold">{user.name}</p>
+                    <p className="truncate w-50">{user.des}</p>
                   </div>
+                </div>
               ))}
             </div>
-            <div className="px-3">
-              asdfdfsdf
+
+
+
+            <div className="w-[60%]">
+              {selectedUser && (
+                  <div className="h-full flex flex-col">
+                      <div className=" pl-3 h-[10%] border-b border-[silver]">
+                        <p className="font-bold">{selectedUser.name}</p>
+                        <p>{selectedUser.skill}</p>
+                      </div>
+                      <div className="h-[60%] overflow-y-auto border-b border-[silver] pl-3 [&::-webkit-scrollbar]:hidden">
+                        {DATA.map((user)=>(
+                          <div>
+                            <p>{user.name}</p>
+                            
+                          </div>
+                        ))}
+                      </div>
+                      <div>
+
+                      </div>
+                  </div>
+                  
+              
+              )}
             </div>
           </div>
         </div>
