@@ -20,7 +20,7 @@ const Navbar = () => {
           
         }
       }}
-      className="bg-[#FFFFFF] border-b border-[silver]  flex lg:items-center lg:justify-center lg:gap-5 h-14 fixed w-full"
+      className="bg-[#FFFFFF] border-b border-[silver]  flex lg:items-center lg:justify-center lg:gap-5 h-14 fixed w-full z-100"
     >
       <div className="flex pl-2 lg:gap-2 w-15 lg:w-118  items-center h-full">
         <img src="/linkedin1.svg" />
