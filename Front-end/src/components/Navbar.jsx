@@ -1,29 +1,34 @@
-import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import DATA from "../../public/DATA.json"
 
 const Navbar = () => {
-  const [show, setShow] = useState(false);
   const [searchbar,setSearchBar]=useState(false);
-
+  
   const navigate = useNavigate();
-
-
+  
+  //profile container states
+  const [show, setShow] = useState(false);
+  const profileDivRef=useRef();
+  useEffect(()=>{
+    const handleProfileDivToggle=(e)=>{
+      if(profileDivRef.current && !profileDivRef.current.contains(e.target)){
+        setShow(false);
+      }
+    }
+    document.addEventListener("mousedown",handleProfileDivToggle);
+    return ()=>document.removeEventListener("mousedown",handleProfileDivToggle);
+  },[])
   
 
   return (
     <div
-      onClick={(e) => {
-        if (!e.target.closest("#profile")) {
-          setShow(false);
-
-          
-        }
-      }}
       className="bg-[#FFFFFF] border-b border-[silver]  flex lg:items-center lg:justify-center lg:gap-5 h-14 fixed w-full z-100"
     >
       <div className="flex pl-2 lg:gap-2 w-15 lg:w-118  items-center h-full">
+        <Link to="/home">
         <img src="/linkedin1.svg" />
+        </Link>
         
         <div className="hidden lg:flex relative flex items-center">
           <img
@@ -218,7 +223,7 @@ const Navbar = () => {
         </NavLink>
 
         <div
-          id="profile"
+          
           className={`flex cursor-pointer flex flex-col items-center  pb-1 w-7 h-13 ${!searchbar ? "relative" : ""}`}
           onClick={() => setShow(!show)}
         >
@@ -244,6 +249,7 @@ const Navbar = () => {
           </div>
 
           <div
+            ref={profileDivRef}
             className={`bg-[#FFFFFF] shadow-xl lg:shadow-none mr-5 lg:mr-0 absolute top-16 lg:top-14 w-70 right-[-24px] p-2 rounded-tl-xl rounded-bl-xl rounded-br-xl transition-all  ${
               show
                 ? "opacity-100 duration-100"
@@ -251,7 +257,7 @@ const Navbar = () => {
             }`}
           >
             <NavLink to="/profile">
-              <div className="p-2">
+              <div className="p-2"  >
                 <div className="flex gap-2">
                   <img
                     src="/src/assets/usericon.png"
