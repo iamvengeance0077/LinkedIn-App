@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import DATA from "../../public/DATA.json"
+import Button from "./Button";
 
 const Navbar = () => {
   const [searchbar,setSearchBar]=useState(false);
@@ -271,12 +272,7 @@ const Navbar = () => {
               </div>
             </NavLink>
             <div className="flex justify-center mt-4 ">
-              <button
-                className="border-2 rounded-full px-22 text-[#378FE9] transition-hover duration-300  cursor-pointer hover:border-[#004182] hover:[box-shadow:inset_0_0_0_1px] hover:bg-[#EBF4FD]"
-                onClick={() => navigate("/profile")}
-              >
-                View Profile
-              </button>
+             <Button title="View profile" onClick={() => navigate("/profile")}/>
             </div>
             <hr className="mt-2 text-[#BBBBBB]"></hr>
             <p onClick={()=>navigate("/")} className="text-[#BBBBBB] hover:underline cursor-pointer px-4 py-2">
