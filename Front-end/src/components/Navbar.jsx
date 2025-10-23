@@ -251,7 +251,7 @@ const Navbar = () => {
 
           <div
             ref={profileDivRef}
-            className={`bg-[#FFFFFF] shadow-xl lg:shadow-none mr-5 lg:mr-0 absolute top-16 lg:top-14 w-70 right-[-24px] p-2 rounded-tl-xl rounded-bl-xl rounded-br-xl transition-all  ${
+            className={`bg-[#FFFFFF] shadow-xl mr-5 lg:mr-0 absolute top-16 lg:top-14 w-70 right-[-24px] p-2 rounded-tl-xl rounded-bl-xl rounded-br-xl transition-all  ${
               show
                 ? "opacity-100 duration-100"
                 : "opacity-0 duration-300 pointer-events-none"
@@ -271,7 +271,7 @@ const Navbar = () => {
                 </div>
               </div>
             </NavLink>
-            <div className="flex justify-center mt-4 ">
+            <div className="flex justify-center mt-4">
              <Button title="View profile" onClick={() => navigate("/profile")}/>
             </div>
             <hr className="mt-2 text-[#BBBBBB]"></hr>
