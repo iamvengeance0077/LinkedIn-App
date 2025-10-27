@@ -16,7 +16,7 @@ const Notifications = () => {
               <div className="w-full">
                 <p className="pb-2">{i.des}</p>
                 
-                  <Button title="View jobs" px={4} />
+                  <Button title="View jobs" px={12} />
                
               </div>
               <button className="cursor-pointer hover:bg-[#E1E1E1] rounded-full w-9 h-8 flex items-center justify-center">
